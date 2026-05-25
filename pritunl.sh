@@ -45,7 +45,7 @@ AuthorizedKeysFile .ssh/authorized_keys
 AllowUsers admin
 EOF
 
-mkdir /etc/fail2ban
+sudo apt --assume-yes install fail2ban
 
 sudo tee /etc/fail2ban/jail.local << EOF
 [sshd]
