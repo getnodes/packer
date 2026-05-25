@@ -1,12 +1,3 @@
-packer {
-  required_plugins {
-    hcloud = {
-      source  = "github.com/hetznercloud/hcloud"
-      version = "~> 1"
-    }
-  }
-}
-
 source "hcloud" "pritunl" {
   image         = "ubuntu-24.04"
   location      = "fsn1"
