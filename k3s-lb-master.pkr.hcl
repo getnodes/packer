@@ -25,6 +25,7 @@ build {
   provisioner "shell" {
     scripts = [
       "k3s-lb-master.sh"
+      "common.sh"
     ]
   }
 }
