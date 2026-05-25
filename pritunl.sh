@@ -28,4 +28,22 @@ sudo apt --assume-yes install pritunl openvpn mongodb-org wireguard wireguard-to
 
 sudo ufw disable
 
-sudo systemctl enable pritunl mongod
+sudo sh -c 'echo "* hard nofile 64000" >> /etc/security/limits.conf'
+sudo sh -c 'echo "* soft nofile 64000" >> /etc/security/limits.conf'
+sudo sh -c 'echo "root hard nofile 64000" >> /etc/security/limits.conf'
+sudo sh -c 'echo "root soft nofile 64000" >> /etc/security/limits.conf'
+
+sudo systemctl enable --now pritunl mongod
+
+until mongosh --quiet --eval "db.runCommand({ ping: 1 })" >/dev/null 2>&1; do
+  echo "Waiting for MongoDB..."
+  sleep 1
+done
+
+until curl -ksf https://localhost/ >/dev/null; do
+  echo "Waiting for Pritunl..."
+  sleep 1
+done
+
+sudo pritunl set-mongodb mongodb://localhost:27017/pritunl
+sudo pritunl reset-password
