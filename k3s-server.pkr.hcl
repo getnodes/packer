@@ -1,12 +1,12 @@
-source "hcloud" "pritunl" {
+source "hcloud" "k3s_server" {
   image         = "ubuntu-24.04"
   location      = "nbg1"
   server_type   = "cpx22"
   ssh_username  = "root"
-  snapshot_name = "pritunl-{{uuid}}"
+  snapshot_name = "k3s-server-{{uuid}}"
 
   snapshot_labels = {
-    app = "pritunl"
+    app = "k3s-server"
   }
 
   user_data = <<-EOF
@@ -19,12 +19,12 @@ source "hcloud" "pritunl" {
 
 build {
   sources = [
-    "source.hcloud.pritunl"
+    "source.hcloud.k3s_server"
   ]
 
   provisioner "shell" {
     scripts = [
-      "pritunl.sh"
+      "k3s-server.sh"
       "common.sh"
     ]
   }
