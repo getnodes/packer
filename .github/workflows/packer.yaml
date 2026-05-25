@@ -29,17 +29,17 @@ jobs:
         uses: hashicorp/setup-packer@v3
         with:
           version: "1.15.3"
-      - run: rm pritunl.pkr.hcl
+      - run: rm hcl/pritunl.pkr.hcl
         if: ${{ inputs.pritunl == false }}
-      - run: rm k3s-lb-master.pkr.hcl
+      - run: rm hcl/k3s-lb-master.pkr.hcl
         if: ${{ inputs.k3s-lb-master == false }}
-      - run: rm k3s-lb-backup.pkr.hcl
+      - run: rm hcl/k3s-lb-backup.pkr.hcl
         if: ${{ inputs.k3s-lb-backup == false }}
       - name: Init
-        run: packer init .
+        run: packer init hcl
       - name: Lint
-        run: packer fmt -check .
+        run: packer fmt -check hcl
       - name: Validate
-        run: packer validate .
+        run: packer validate hcl
       - name: Build
-        run: packer build .
+        run: packer build hcl
