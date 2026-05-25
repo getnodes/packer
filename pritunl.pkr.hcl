@@ -4,6 +4,10 @@ source "hcloud" "pritunl" {
   server_type   = "cpx22"
   ssh_username  = "root"
   snapshot_name = "pritunl-{{uuid}}"
+
+  snapshot_labels = {
+    app = "pritunl"
+  }
 }
 
 build {
