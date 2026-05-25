@@ -25,7 +25,7 @@ build {
   provisioner "shell" {
     scripts = [
       "k3s.sh"
-      "common.sh"
+      "packer.sh"
     ]
   }
 }
