@@ -19,4 +19,10 @@ build {
   sources = [
     "source.hcloud.pritunl"
   ]
+
+  provisioner "shell" {
+    scripts = [
+      "pritunl.sh"
+    ]
+  }
 }

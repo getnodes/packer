@@ -1,0 +1,26 @@
+name: Packer
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
+jobs:
+  packer:
+    runs-on: ubuntu-latest
+    name: Run Packer
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup `packer`
+        uses: hashicorp/setup-packer@main
+        id: setup
+        with:
+          version: 1.15.3
+      - name: Run `packer init`
+        id: init
+        run: "packer init ./image.pkr.hcl"
+      - name: Run `packer validate`
+        id: validate
+        run: "packer validate ./image.pkr.hcl"
