@@ -11,6 +11,12 @@ on:
       k3s-lb-backup:
         required: true
         type: boolean
+      k3s-server:
+        required: true
+        type: boolean
+      k3s-agent:
+        required: true
+        type: boolean
 jobs:
   packer:
     runs-on: ubuntu-latest
