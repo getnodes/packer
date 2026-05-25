@@ -1,4 +1,5 @@
 name: Packer
+run-name: ${{ startsWith(github.ref, 'refs/tags/') && 'build' || 'validate' }} on ${{ github.ref_name }}
 on:
   workflow_dispatch:
   push:
@@ -9,18 +10,21 @@ on:
 jobs:
   packer:
     runs-on: ubuntu-latest
-    name: Run Packer
+    env:
+      HCLOUD_TOKEN: ${{ secrets.HCLOUD_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Setup `packer`
-        uses: hashicorp/setup-packer@main
-        id: setup
+      - name: Setup Packer
+        uses: hashicorp/setup-packer@v3
         with:
-          version: 1.15.3
-      - name: Run `packer init`
-        id: init
-        run: "packer init ./image.pkr.hcl"
-      - name: Run `packer validate`
-        id: validate
-        run: "packer validate ./image.pkr.hcl"
+          version: "1.15.3"
+      - name: Init
+        run: packer init .
+      - name: Lint
+        run: packer fmt -check .
+      - name: Validate
+        run: packer validate .
+      - name: Build
+        if: startsWith(github.event.ref, 'refs/tags/v')
+        run: packer build .
