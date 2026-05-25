@@ -1,12 +1,12 @@
-source "hcloud" "k3s_agent" {
+source "hcloud" "k3s_node" {
   image         = "ubuntu-24.04"
   location      = "nbg1"
   server_type   = "cpx22"
   ssh_username  = "root"
-  snapshot_name = "k3s-agent-{{uuid}}"
+  snapshot_name = "k3s-node-{{uuid}}"
 
   snapshot_labels = {
-    app = "k3s-agent"
+    app = "k3s-node"
   }
 
   user_data = <<-EOF
@@ -19,12 +19,12 @@ source "hcloud" "k3s_agent" {
 
 build {
   sources = [
-    "source.hcloud.k3s_agent"
+    "source.hcloud.k3s_node"
   ]
 
   provisioner "shell" {
     scripts = [
-      "k3s-agent.sh"
+      "k3s-node.sh"
       "common.sh"
     ]
   }

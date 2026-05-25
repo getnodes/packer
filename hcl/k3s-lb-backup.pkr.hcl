@@ -10,10 +10,10 @@ source "hcloud" "k3s_lb_backup" {
   }
 
   user_data = <<-EOF
-    #cloud-config
-    growpart:
-      mode: "off"
-    resize_rootfs: false
+  #cloud-config
+  growpart:
+  mode: "off"
+  resize_rootfs: false
   EOF
 }
 
