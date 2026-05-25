@@ -8,6 +8,13 @@ source "hcloud" "pritunl" {
   snapshot_labels = {
     app = "pritunl"
   }
+
+  user_data = <<-EOF
+    #cloud-config
+    growpart:
+      mode: "off"
+    resize_rootfs: false
+  EOF
 }
 
 build {
