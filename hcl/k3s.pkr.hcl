@@ -1,12 +1,12 @@
-source "hcloud" "k3s_node" {
+source "hcloud" "k3s" {
   image         = "ubuntu-24.04"
   location      = "nbg1"
   server_type   = "cpx22"
   ssh_username  = "root"
-  snapshot_name = "k3s-node-{{uuid}}"
+  snapshot_name = "k3s-{{uuid}}"
 
   snapshot_labels = {
-    app = "k3s-node"
+    app = "k3s"
   }
 
   user_data = <<-EOF
@@ -19,12 +19,12 @@ source "hcloud" "k3s_node" {
 
 build {
   sources = [
-    "source.hcloud.k3s_node"
+    "source.hcloud.k3s"
   ]
 
   provisioner "shell" {
     scripts = [
-      "k3s-node.sh"
+      "k3s.sh"
       "common.sh"
     ]
   }

@@ -1,12 +1,12 @@
-source "hcloud" "k3s_lb_master" {
+source "hcloud" "lb" {
   image         = "ubuntu-24.04"
   location      = "nbg1"
   server_type   = "cpx22"
   ssh_username  = "root"
-  snapshot_name = "k3s-lb-master-{{uuid}}"
+  snapshot_name = "lb-{{uuid}}"
 
   snapshot_labels = {
-    app = "k3s-lb-master"
+    app = "lb"
   }
 
   user_data = <<-EOF
@@ -19,12 +19,12 @@ source "hcloud" "k3s_lb_master" {
 
 build {
   sources = [
-    "source.hcloud.k3s_lb_master"
+    "source.hcloud.lb"
   ]
 
   provisioner "shell" {
     scripts = [
-      "k3s-lb-master.sh"
+      "lb.sh"
       "common.sh"
     ]
   }
