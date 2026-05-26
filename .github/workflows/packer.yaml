@@ -2,19 +2,13 @@ name: Packer
 on:
   workflow_dispatch:
     inputs:
+      k3s:
+        required: true
+        type: boolean
+      lb:
+        required: true
+        type: boolean
       pritunl:
-        required: true
-        type: boolean
-      k3s-lb-master:
-        required: true
-        type: boolean
-      k3s-lb-backup:
-        required: true
-        type: boolean
-      k3s-server:
-        required: true
-        type: boolean
-      k3s-agent:
         required: true
         type: boolean
 jobs:
