@@ -3,13 +3,10 @@ on:
   workflow_dispatch:
     inputs:
       k3s:
-        required: true
         type: boolean
       lb:
-        required: true
         type: boolean
       pritunl:
-        required: true
         type: boolean
 jobs:
   packer:
