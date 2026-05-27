@@ -24,7 +24,7 @@ build {
 
   provisioner "shell" {
     scripts = [
-      "lb.sh"
+      "lb.sh",
       "base.sh"
     ]
   }
