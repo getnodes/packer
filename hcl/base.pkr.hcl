@@ -24,7 +24,7 @@ build {
 
   provisioner "shell" {
     scripts = [
-      "packer.sh"
+      "base.sh"
     ]
   }
 }

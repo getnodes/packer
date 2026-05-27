@@ -25,7 +25,7 @@ build {
   provisioner "shell" {
     scripts = [
       "pritunl.sh"
-      "packer.sh"
+      "base.sh"
     ]
   }
 }
