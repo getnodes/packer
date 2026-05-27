@@ -1,12 +1,12 @@
-source "hcloud" "management" {
+source "hcloud" "base" {
   image         = "ubuntu-24.04"
   location      = "nbg1"
   server_type   = "cpx22"
   ssh_username  = "root"
-  snapshot_name = "management-{{uuid}}"
+  snapshot_name = "base-{{uuid}}"
 
   snapshot_labels = {
-    app = "management"
+    app = "base"
   }
 
   user_data = <<-EOF
@@ -19,12 +19,11 @@ source "hcloud" "management" {
 
 build {
   sources = [
-    "source.hcloud.management"
+    "source.hcloud.base"
   ]
 
   provisioner "shell" {
     scripts = [
-      "management.sh"
       "packer.sh"
     ]
   }

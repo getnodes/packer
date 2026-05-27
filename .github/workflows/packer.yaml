@@ -2,11 +2,9 @@ name: Packer
 on:
   workflow_dispatch:
     inputs:
-      k3s:
+      base:
         type: boolean
       lb:
-        type: boolean
-      management:
         type: boolean
       pritunl:
         type: boolean
