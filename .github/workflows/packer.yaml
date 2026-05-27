@@ -6,6 +6,8 @@ on:
         type: boolean
       lb:
         type: boolean
+      management:
+        type: boolean
       pritunl:
         type: boolean
 jobs:
@@ -24,6 +26,8 @@ jobs:
         if: ${{ inputs.k3s == false }}
       - run: rm hcl/lb.pkr.hcl
         if: ${{ inputs.lb == false }}
+      - run: rm hcl/management.pkr.hcl
+        if: ${{ inputs.management == false }}
       - run: rm hcl/pritunl.pkr.hcl
         if: ${{ inputs.pritunl == false }}
       - name: Init
