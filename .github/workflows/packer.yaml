@@ -2,7 +2,7 @@ name: Packer
 on:
   workflow_dispatch:
     inputs:
-      base:
+      common:
         type: boolean
       pritunl:
         type: boolean
@@ -18,8 +18,8 @@ jobs:
         uses: hashicorp/setup-packer@v3
         with:
           version: "1.15.3"
-      - run: rm hcl/base.pkr.hcl
-        if: ${{ inputs.base == false }}
+      - run: rm hcl/common.pkr.hcl
+        if: ${{ inputs.common == false }}
       - run: rm hcl/pritunl.pkr.hcl
         if: ${{ inputs.pritunl == false }}
       - name: Init
