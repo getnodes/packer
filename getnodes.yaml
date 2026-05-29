@@ -1,0 +1,13 @@
+#cloud-config
+users:
+  - name: admin
+    groups:
+      - sudo
+    shell: /bin/bash
+    sudo:
+      - ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDJbV6IvKeBybO4/iydUZg+2OQ8twj7PW+p9+rZeBFmX
+growpart:
+  mode: "off"
+resize_rootfs: false
