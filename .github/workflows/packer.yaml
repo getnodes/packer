@@ -14,10 +14,10 @@ jobs:
         with:
           version: "1.15.3"
       - name: Init
-        run: packer init hcl
+        run: packer init .
       - name: Lint
-        run: packer fmt -check hcl
+        run: packer fmt -check .
       - name: Validate
-        run: packer validate hcl
+        run: packer validate .
       - name: Build
-        run: packer build hcl
+        run: packer build .
