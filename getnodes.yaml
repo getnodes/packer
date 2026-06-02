@@ -7,7 +7,8 @@ users:
     sudo:
       - ALL=(ALL) NOPASSWD:ALL
     ssh_authorized_keys:
-      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDJbV6IvKeBybO4/iydUZg+2OQ8twj7PW+p9+rZeBFmX
+      - ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBGim9JnMwwSxqjDGXBH6Me/SWwNRXgYmzgO/uBxOKVk0GOVy9hJgSF8qud/mA6hBvAwaAx15eKHAKSdpHC3yJww=
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBYLn4epKKh/2P75Q56EApOVpF+Cx0ls8sZ7Jx06w50e
 growpart:
   mode: "off"
 resize_rootfs: false
