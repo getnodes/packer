@@ -11,3 +11,4 @@ users:
 growpart:
   mode: "off"
 resize_rootfs: false
+package_update: true
