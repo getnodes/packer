@@ -4,8 +4,6 @@ set -o errexit   # abort on nonzero exitstatus
 set -o nounset   # abort on unbound variable
 set -o pipefail  # don't hide errors within pipes
 
-sudo apt update
-
 # --- SSH hardening ---
 sudo tee /etc/ssh/sshd_config.d/ssh-hardening.conf << EOF
 PermitRootLogin no
@@ -20,17 +18,6 @@ AllowAgentForwarding no
 AuthorizedKeysFile .ssh/authorized_keys
 AllowUsers admin
 EOF
-
-sudo apt --assume-yes install fail2ban
-
-sudo tee /etc/fail2ban/jail.local << EOF
-[sshd]
-enabled = true
-port = ssh, 1422
-banaction = iptables-multiport
-EOF
-
-sudo systemctl enable fail2ban
 
 # --- Clean up ---
 cloud-init clean --logs --machine-id --seed --configs all
