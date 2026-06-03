@@ -4,7 +4,9 @@ set -o errexit   # abort on nonzero exitstatus
 set -o nounset   # abort on unbound variable
 set -o pipefail  # don't hide errors within pipes
 
+# --- APT packages ---
 apt-get update
+apt-get install -y policycoreutils
 
 # --- SSH hardening ---
 sudo tee /etc/ssh/sshd_config.d/ssh-hardening.conf << EOF
